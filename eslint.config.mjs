@@ -3,8 +3,6 @@ import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 
-const isCI = process.env.CI === 'true';
-
 export default [
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
   { languageOptions: { globals: globals.browser } },
@@ -13,9 +11,9 @@ export default [
   pluginReact.configs.flat.recommended,
   {
     rules: {
-      // Set unused variables to warn in CI, error in local dev
-      "no-unused-vars": isCI ? "warn" : "error",
-      // Other rule overrides if needed
+      // Change rules based on the CI environment
+      "no-unused-vars": process.env.CI ? "warn" : "error", // Treat unused vars as warnings in CI
+      // Add more rules as needed
     },
   },
 ];
