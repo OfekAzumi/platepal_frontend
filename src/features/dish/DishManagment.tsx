@@ -158,7 +158,7 @@ const DishManagment = () => {
                             <div className="row mt-4 " >
                                 {/* Left Side - List with Order Cards and Click Button */}
                                 <div className="col-md-3" >
-                                    {dishes[0].id == -1 || dishes.length.toString().includes('0') ?
+                                    {dishes.length.toString().includes('0') ?
                                         <div className="card mb-2 bg-transparent">
                                             <div className="card-body d-flex align-items-center">
                                                 <h5 className="card-title">No Dishes Available</h5>
@@ -298,7 +298,7 @@ const DishManagment = () => {
                                                 onChange={(evt) => setdishDescription(evt.target.value)}
                                             />
                                         </div>
-                                        {(categories[0].id == -1) ?
+                                        {(categories.length.toString().includes('0')) ?
                                             <div className="form-group mb-3">
                                                 <label>Must Add Categories To Use A Dish.</label>
                                             </div>
@@ -365,7 +365,7 @@ const DishManagment = () => {
                                     You can start from 1000 to 9999.
                                 </Text>
                             </FormHelperText>
-                            {dishes[0].id == -1 ?
+                            {dishes.length.toString().includes('0') ?
                                 <NumberInput max={9999} min={1000} onChange={handleCodeChange} >
                                     <NumberInputField placeholder='For Example... 1000' />
                                     <NumberInputStepper>
@@ -407,7 +407,7 @@ const DishManagment = () => {
                             />
                         </FormControl>
 
-                        {(categories[0].id == -1) ?
+                        {(categories.length.toString().includes('0')) ?
                             <FormControl mt={4}>
                                 <FormLabel>Must Add Categories To Use A Dish.</FormLabel>
                             </FormControl>

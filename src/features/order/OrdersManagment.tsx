@@ -229,7 +229,7 @@ const OrdersManagment = () => {
                             <div className="row mt-4 " >
                                 {/* Left Side - List with Order Cards and Click Button */}
                                 <div className="col-md-3" >
-                                    {orders[0].id == -1 || orders.length.toString().includes('0')?
+                                    {orders.length.toString().includes('0')?
                                         <div className="card mb-2 bg-transparent">
                                             <div className="card-body d-flex align-items-center">
                                                 <h5 className="card-title">No Orders Available</h5>

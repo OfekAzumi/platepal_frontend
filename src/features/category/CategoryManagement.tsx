@@ -147,7 +147,7 @@ const CategoryManagement = () => {
                         <div className="row mt-4 " >
                             {/* Left Side - List with Order Cards and Click Button */}
                             <div className="col-md-3" >
-                                {categories[0].id == -1 || categories.length.toString().includes('0') ?
+                                {categories.length.toString().includes('0') ?
                                     <div className="card mb-2 bg-transparent">
                                         <div className="card-body d-flex align-items-center">
                                             <h5 className="card-title">No Categories Available</h5>
@@ -309,7 +309,7 @@ const CategoryManagement = () => {
                                     You can start from 100 to 999.
                                 </Text>
                             </FormHelperText>
-                            {categories[0].id == -1 ?
+                            {categories.length.toString().includes('0') ?
                                 <NumberInput max={999} min={100} onChange={handleCodeChange} >
                                     <NumberInputField placeholder='For Example... 001' />
                                     <NumberInputStepper>

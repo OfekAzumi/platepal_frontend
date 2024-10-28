@@ -221,7 +221,7 @@ const EmployeesManagment = () => {
                             <div className="row mt-4 " >
                                 {/* Left Side - List with Order Cards and Click Button */}
                                 <div className="col-md-3" >
-                                    {employees[0].id == -1 || employees.length.toString().includes('0') ?
+                                    {employees.length.toString().includes('0') ?
                                         <div className="card mb-2 bg-transparent">
                                             <div className="card-body d-flex align-items-center">
                                                 <h5 className="card-title">No Employees Available</h5>
@@ -426,7 +426,7 @@ const EmployeesManagment = () => {
                                         You can start from 100000 to 999999.
                                     </Text>
                                 </FormHelperText>
-                                {employees[0].id == -1 ?
+                                {employees.length.toString().includes('0') ?
                                     <NumberInput max={999999} min={100000} onChange={handleCodeChange} >
                                         <NumberInputField placeholder='For Example... 100000' />
                                         <NumberInputStepper>
