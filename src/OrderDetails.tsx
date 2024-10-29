@@ -212,7 +212,7 @@ const OrderDetails = () => {
                         isClosable: true,
                     })
                     setcustId(0)
-                    customers[0].id == -1 ? setcustUnicode('100000') : setcustUnicode(((customers[customers.length - 1].unicode) + 1))
+                    customers.length.toString().includes('0') ? setcustUnicode('100000') : setcustUnicode(((customers[customers.length - 1].unicode) + 1))
                     setcustName('')
                     setcustPhone(searchTerm)
                     setcustCity('')
