@@ -8,10 +8,13 @@ import { getEmployeesAsync } from '../employee/employeeSlice'
 import { getDishesAsync } from '../dish/dishSlice'
 import { getCustomersAsync } from '../customer/customerSlice'
 import { getOrdersAsync } from '../order/orderSlice'
+import { Box, Button, FormControl, FormLabel, Input, InputGroup, InputProps, useDisclosure } from '@chakra-ui/react';
+
 
 const Login = () => {
   const [password, setPassword] = useState('')
   const [username, setuserName] = useState('')
+  const [showPassword, setShowPassword] = useState(false);
 
   const logged = useAppSelector(selectLogged);
   const dispatch = useAppDispatch();
@@ -19,6 +22,12 @@ const Login = () => {
   const shadowStyle = {
     borderRadius: '10px', outline: 'none', boxShadow: '0 0 8px rgba(0, 0, 0, 0.1)'
   }
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      LoginActions(); // Ensure LoginActions is defined or imported correctly
+    }
+  };
 
   const LoginActions = () => {
     dispatch(loginAsync({ username, password }))
@@ -31,38 +40,61 @@ const Login = () => {
 
   return (
     <div>
-      <div className="container mt-5" style={{ fontFamily: 'Poppins, sans-serif' }}>
-        <div className="row justify-content-center">
+      <Box className="container mt-5" fontFamily="Poppins, sans-serif">
+        <Box className="row justify-content-center">
           {logged ? <LoggedIn /> : <NotLogged />}
-        </div>
-        <div className="row justify-content-center ">
-          {logged && <button className='btn btn-outline-success' onClick={() => dispatch(logOut())}>Logout</button>}
-          {!logged && (
-            <div className="container mt-5">
-              <div className="row justify-content-center ">
-                <div className="col-md-6">
-                  <div className="card bg-transparent">
-                    <div className="card-header">
-                      <h3 className="text-center">Login</h3>
-                    </div>
-                    <div className="card-body ">
-                      <div className="form-group">
-                        <label>Username</label>
-                        <input onChange={(evt) => setuserName(evt.target.value)} className="form-control bg-transparent border-0" placeholder="Enter your username" style={shadowStyle} />
-                      </div>
-                      <div className="form-group ">
-                        <label>Password</label>
-                        <input onChange={(evt) => setPassword(evt.target.value)} type="password" className="form-control bg-transparent border-0" placeholder="Enter your password" style={shadowStyle} />
-                      </div>
-                      <button onClick={() => LoginActions()} className="btn btn-dark btn-block">Login</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        </Box>
+        <Box className="row justify-content-center">
+          {logged && (
+            <Button colorScheme="teal" onClick={() => dispatch(logOut())}>
+              Logout
+            </Button>
           )}
-        </div>
-      </div>
+          {!logged && (
+            <Box className="container mt-5">
+              <Box className="row justify-content-center">
+                <Box className="col-md-6">
+                  <Box bg="transparent" borderRadius="md" boxShadow="md">
+                    <Box p={4}>
+                      <h3 className="text-center">Login</h3>
+                      <FormControl mt={4}>
+                        <FormLabel color='gray.500'>Username</FormLabel>
+                        <Input
+                          onChange={(evt) => setuserName(evt.target.value)}
+                          placeholder="Enter your username"
+                          variant="outline"
+                          onKeyPress={handleKeyPress}
+                        />
+                      </FormControl>
+                      <FormControl mt={4}>
+                        <FormLabel  color='gray.500'>Password</FormLabel>
+                        <InputGroup>
+                          <Input
+                            onChange={(evt) => setPassword(evt.target.value)}
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder="Enter your password"
+                            variant="outline"
+                            onKeyPress={handleKeyPress}
+                          />
+                          <Button
+                            onClick={() => setShowPassword(!showPassword)}
+                            variant="outline"
+                          >
+                            {showPassword ? 'Hide' : 'Show'}
+                          </Button>
+                        </InputGroup>
+                      </FormControl>
+                      <Button onClick={() => LoginActions()} colorScheme="green" width="full" mt={4}>
+                        Login
+                      </Button>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          )}
+        </Box>
+      </Box>
     </div>
   )
 }

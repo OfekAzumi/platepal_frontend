@@ -34,7 +34,6 @@ root.render(
             <Route path='/login' element={<Login />} />
             <Route path='/loading' element={<Loading />} />
             <Route path='/managment' element={<Managment />} >
-              <Route path='/managment/home' element={<Home />} />
               <Route path='/managment/login' element={<Login />} />
               <Route path='/managment/categories' element={<CategoryManagement />} />
               <Route path='/managment/employees' element={<EmployeesManagment />} />

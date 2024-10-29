@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { logOut, selectLogged, selectUserName } from '../login/loginSlice';
+import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 
 const ManagersNavBar = () => {
 
@@ -29,7 +30,7 @@ const ManagersNavBar = () => {
                         {username && logged ? (
                             <ul className="navbar-nav d-flex justify-content-between align-items-center w-100" style={textStyle}>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to='/managment/home' style={textStyle}>Reports</Link>
+                                    <span className="nav-link" style={textStyle}>Welcome, {capitalizeFirstLetter(username)}</span>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to='/managment/orders' style={textStyle}>Orders</Link>
@@ -47,13 +48,10 @@ const ManagersNavBar = () => {
                                     <Link className="nav-link" to='/managment/categories' style={textStyle}>Categories</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <div className="dropdown">
-                                        <span className="nav-link dropdown-toggle" role="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={textStyle}>Welcome, {capitalizeFirstLetter(username)}</span>
-                                        <div className="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown" style={{ backgroundColor: '#F2F1EB' }}>
-                                            <Link to='/managment/register' className="dropdown-item">Register</Link>
-                                            <Link to='/' className="dropdown-item" onClick={() => dispatch(logOut())}>Logout</Link>
-                                        </div>
-                                    </div>
+                                    <Link className="nav-link" to='/managment/register' style={textStyle}>Register</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to='/' onClick={() => dispatch(logOut())} style={textStyle}>LogOut</Link>
                                 </li>
                             </ul>
                         ) : (
